@@ -6,11 +6,12 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:19:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 17:11:17 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:03:07 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "fmt.h"
 
 static t_state	*get_initial_state(const char *format, va_list args)
 {

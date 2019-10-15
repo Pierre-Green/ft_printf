@@ -6,25 +6,26 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/15 17:15:09 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/15 18:01:14 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		clang
 
-CFLAGS		=		-Wall -Werror -Wextra -g
+CFLAGS		=		-g
 INCDIR		=		includes
 
 NAME		=		libftprintf.a
 T_NAME		=		tests_bin
 
-SRCS		=		clear.c			\
-					ft_printf.c		\
-					buff/flush.c	\
-					buff/write.c	\
-					fmt/fmt.c		\
+SRCS		=		clear.c				\
+					ft_printf.c			\
+					buff/flush.c		\
+					buff/write.c		\
+					fmt/fmt.c			\
+					fmt/convert_char.c	\
 
-T_SRCS	=		assert.c		\
+T_SRCS	=			assert.c		\
 					main.c			\
 					test_static.c	\
 

@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:18:20 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 16:03:50 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:02:29 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include "state.h"
-# include "fmt.h"
 # include "buff.h"
 
 int					ft_printf_va(const char *format, va_list args);
