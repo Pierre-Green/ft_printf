@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 19:05:06 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/15 20:16:23 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@
 # define FLAG_SIGNMUS 0x0000F000
 # define FLAG_APOSTRO 0x00000F00
 
-typedef void				(*t_convert_func)();
-
 typedef uint32_t			t_flag;
 
-void						convert_char();
+typedef struct				s_fmt
+{
+	t_flag					flags;
+	size_t					min_width;
+	char					precised;
+	size_t					precision;
+}							t_fmt;
+void						fmt(t_state *state);
 
 static t_flag				g_flags[1 << 7] = {
 	['#'] = FLAG_ALTERNA,
@@ -37,19 +42,21 @@ static t_flag				g_flags[1 << 7] = {
 	['\''] = FLAG_APOSTRO
 };
 
+typedef void				(*t_convert_func)(t_state *, t_fmt);
+void						convert_char(t_state *state, t_fmt fmt);
+void						convert_str(t_state *state, t_fmt fmt);
+void						convert_int(t_state *state, t_fmt fmt);
+void						convert_uint(t_state *state, t_fmt fmt);
+void						convert_hex(t_state *state, t_fmt fmt);
+void						convert_hex_up(t_state *state, t_fmt fmt);
 static t_convert_func		g_conversions[1 << 7] = {
-	['c'] = convert_char
+	['c'] = convert_char,
+	['s'] = convert_str,
+	['d'] = convert_int,
+	['i'] = convert_int,
+	['u'] = convert_uint,
+	['x'] = convert_hex,
+	['X'] = convert_hex_up
 };
-
-typedef struct				s_fmt
-{
-	t_flag					flags;
-	size_t					min_width;
-	char					precised;
-	size_t					precision;
-	t_convert_func			convert_func;
-}							t_fmt;
-
-void						fmt(t_state *state);
 
 #endif

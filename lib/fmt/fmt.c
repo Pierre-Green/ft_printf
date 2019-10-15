@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 19:05:38 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/15 20:04:09 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,15 @@ static t_fmt		parse_precision(t_state *state, t_fmt fmt)
 void				fmt(t_state *state)
 {
 	t_fmt			fmt;
+	t_convert_func	f_convert;
 
 	state->frmt++;
 	fmt = get_initial_fmt();
 	fmt = parse_flags(state, fmt);
 	fmt = parse_minwidth(state, fmt);
 	fmt = parse_precision(state, fmt);
-	if (!(fmt.convert_func = g_conversions[(unsigned char)*state->frmt]))
+	if (!(f_convert = g_conversions[(unsigned char)*state->frmt]))
 		return ;
 	state->frmt++;
+	f_convert(state, fmt);
 }
