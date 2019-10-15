@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:26:00 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 16:31:06 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:13:54 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 size_t			buff_write_char(t_buff *buff, char c)
 {
+	buff_flush_if_full(buff);
 	buff->buff[buff->len] = c;
 	buff->len++;
+	buff_flush_if_full(buff);
 	return (1);
 }
 
