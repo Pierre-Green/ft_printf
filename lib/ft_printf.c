@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:19:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 16:31:20 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:11:17 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static t_state	*get_initial_state(const char *format, va_list args)
 		return (NULL);
 	state->count = 0;
 	state->frmt = (char *)format;
+	va_copy(state->args, args);
 	if (!(state->buff = (t_buff *)malloc(sizeof(t_buff))))
 	{
 		state->buff->len = 64;
