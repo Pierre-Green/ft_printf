@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:27:17 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 16:26:12 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 14:43:29 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,18 @@ typedef struct		s_buff
 	size_t			len;
 }					t_buff;
 
-size_t				buff_write_char(t_buff *buff, char c);
+size_t				buff_write_uchar(t_buff *buff, unsigned char c);
+
+size_t				buff_write_nchar(t_buff *buff, size_t count,
+	unsigned char c);
 
 size_t				buff_write_strl(t_buff *buff, char *s, size_t len);
 
 size_t				buff_write_str(t_buff *buff, char *s);
+
+size_t				buff_write_int(t_buff *buff, int n);
+
+size_t				buff_write_uint(t_buff *buff, unsigned int n);
 
 void				buff_flush_if_full(t_buff *buff);
 

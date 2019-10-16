@@ -6,7 +6,7 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/15 20:14:45 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/16 14:46:12 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,18 @@ T_NAME		=		tests_bin
 SRCS		=		clear.c				\
 					ft_printf.c			\
 					buff/flush.c		\
-					buff/write.c		\
+					buff/write_alpha.c	\
+					buff/write_num.c	\
 					fmt/fmt.c			\
 					fmt/convert_char.c	\
 					fmt/convert_str.c	\
 					fmt/convert_int.c	\
 					fmt/convert_uint.c	\
 					fmt/convert_hex.c	\
+										\
+					ft/ft_bzero.c		\
+					ft/ft_count_digits.c\
+					ft/ft_strlen.c		\
 
 T_SRCS	=			assert.c		\
 					main.c			\

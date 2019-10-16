@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.h                                            :+:      :+:    :+:   */
+/*   ft_count_digits.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:05:32 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 14:49:40 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/08 16:33:55 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/16 13:44:53 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTS_H
-# define TESTS_H
-# include <stdio.h>
-# include <stdarg.h>
-# include <stdlib.h>
-# include "ft_printf.h"
-# include "limits.h"
+#include <stdlib.h>
 
-void		printf_assert(char const *name, char const *format, ...);
+size_t				ft_count_digits(int n)
+{
+	size_t			pow;
 
-void		test_static();
-
-void		test_fmt();
-
-#endif
+	pow = 0;
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		pow++;
+		n /= 10;
+	}
+	return (pow);
+}

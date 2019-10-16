@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 20:16:23 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 13:45:05 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define FLAG_SPACEAL 0x000F0000
 # define FLAG_SIGNMUS 0x0000F000
 # define FLAG_APOSTRO 0x00000F00
+# define MAX(a, b) (a >= b ? a : b)
+# define MIN(a, b) (a >= b ? b : a)
 
 typedef uint32_t			t_flag;
 
@@ -56,7 +58,13 @@ static t_convert_func		g_conversions[1 << 7] = {
 	['i'] = convert_int,
 	['u'] = convert_uint,
 	['x'] = convert_hex,
-	['X'] = convert_hex_up
+	['X'] = convert_hex_up,
 };
+
+size_t						ft_strlen(const char *s);
+
+void						ft_bzero(void *s, size_t n);
+
+size_t						ft_count_digits(int n);
 
 #endif

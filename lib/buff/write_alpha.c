@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write.c                                            :+:      :+:    :+:   */
+/*   write_alpha.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:26:00 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 18:13:54 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:12:22 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "buff.h"
 
-size_t			buff_write_char(t_buff *buff, char c)
+size_t			buff_write_uchar(t_buff *buff, unsigned char c)
 {
 	buff_flush_if_full(buff);
 	buff->buff[buff->len] = c;
 	buff->len++;
 	buff_flush_if_full(buff);
 	return (1);
+}
+
+size_t			buff_write_nchar(t_buff *buff, size_t count, unsigned char c)
+{
+	size_t		i;
+
+	i = 0;
+	while (i < count)
+	{
+		buff_write_uchar(buff, c);
+		i++;
+	}
+	return (i);
 }
 
 size_t			buff_write_strl(t_buff *buff, char *s, size_t len)

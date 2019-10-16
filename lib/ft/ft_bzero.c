@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:05:32 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 14:49:40 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/07 11:58:05 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/16 13:43:39 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTS_H
-# define TESTS_H
-# include <stdio.h>
-# include <stdarg.h>
-# include <stdlib.h>
-# include "ft_printf.h"
-# include "limits.h"
+#include <stdlib.h>
 
-void		printf_assert(char const *name, char const *format, ...);
+void				ft_bzero(void *s, size_t n)
+{
+	unsigned char	*bytes;
 
-void		test_static();
-
-void		test_fmt();
-
-#endif
+	bytes = s;
+	while (n--)
+	{
+		bytes[n] = 0;
+	}
+}
