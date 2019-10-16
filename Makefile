@@ -6,7 +6,7 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/16 16:44:57 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/16 18:48:53 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS		=		clear.c				\
 					fmt/fmt.c			\
 					fmt/convert_char.c	\
 					fmt/convert_str.c	\
+					fmt/convert_ptr.c	\
 					fmt/convert_int.c	\
 					fmt/convert_uint.c	\
 					fmt/convert_hex.c	\
@@ -40,6 +41,7 @@ T_SRCS	=			assert.c		\
 					tests_static.c	\
 					tests_char.c	\
 					tests_str.c		\
+					tests_ptr.c		\
 					tests_int.c		\
 					tests_uint.c	\
 					tests_hex.c		\

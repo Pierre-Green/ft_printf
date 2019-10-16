@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tests_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:05:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 18:41:36 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/16 16:16:58 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/16 18:40:34 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-int		main(void)
+void		test_fmt_ptr(void)
 {
-	// test_static();
-	// test_fmt_char();
-	// test_fmt_str();
-	test_fmt_ptr();
-	// test_fmt_int();
-	// test_fmt_hex();
-	// test_fmt_uint();
+	char	*ptr;
+
+	if ((ptr = malloc(sizeof(char) * 10)) == NULL)
+		return ;
+	printf_assert("Ptr fmt 1", "|%p|", ptr);
+	free(ptr);
 }

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   convert_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:05:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 18:41:36 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/16 18:36:36 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/16 18:48:42 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
+#include "fmt.h"
 
-int		main(void)
+void						convert_ptr(t_state *state, t_fmt fmt)
 {
-	// test_static();
-	// test_fmt_char();
-	// test_fmt_str();
-	test_fmt_ptr();
-	// test_fmt_int();
-	// test_fmt_hex();
-	// test_fmt_uint();
+	(void)state;
+	(void)fmt;
 }
