@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 18:58:07 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 16:04:56 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 16:09:41 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void		test_fmt(void)
 	// test_fmt_str();
 	// test_fmt_int();
 	test_fmt_hex();
+	printf_assert("Test misc %", "|%%|");
 }

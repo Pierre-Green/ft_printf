@@ -6,13 +6,13 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/16 16:06:03 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/16 16:09:59 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		clang
 
-CFLAGS		=		-g -Wall -Werror -Wextra
+CFLAGS		=		-g
 INCDIR		=		includes
 
 NAME		=		libftprintf.a
