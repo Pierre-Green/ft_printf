@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:19:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 13:53:19 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 16:24:32 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static t_state	*get_initial_state(const char *format, va_list args)
 int				ft_printf_va(const char *format, va_list args)
 {
 	t_state		*state;
+	size_t		count;
 
 	if (!(state = get_initial_state(format, args)))
 		return (-42);
@@ -52,8 +53,9 @@ int				ft_printf_va(const char *format, va_list args)
 		}
 	}
 	buff_flush(state->buff);
+	count = state->count;
 	clear_state(state);
-	return (state->count);
+	return (count);
 }
 
 int				ft_printf(const char *format, ...)
