@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 20:13:07 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:28:00 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,6 @@
 
 void						convert_uint(t_state *state, t_fmt fmt)
 {
+	(void)state;
+	(void)fmt;
 }

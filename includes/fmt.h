@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 13:45:05 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:27:24 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,5 @@ static t_convert_func		g_conversions[1 << 7] = {
 	['x'] = convert_hex,
 	['X'] = convert_hex_up,
 };
-
-size_t						ft_strlen(const char *s);
-
-void						ft_bzero(void *s, size_t n);
-
-size_t						ft_count_digits(int n);
 
 #endif

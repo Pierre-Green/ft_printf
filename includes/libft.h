@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_hex.c                                      :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 15:28:20 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/16 15:26:19 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/16 15:26:55 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fmt.h"
-#include "buff.h"
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <stdlib.h>
 
-void						convert_hex(t_state *state, t_fmt fmt)
-{
-	(void)state;
-	(void)fmt;
-}
+size_t						ft_strlen(const char *s);
 
-void						convert_hex_up(t_state *state, t_fmt fmt)
-{
-	(void)state;
-	(void)fmt;
-}
+void						ft_bzero(void *s, size_t n);
+
+size_t						ft_count_digits(int n);
+
+#endif

@@ -6,13 +6,13 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 18:58:07 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 15:08:56 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:25:02 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-static void		test_fmt_char()
+static void		test_fmt_char(void)
 {
 	printf_assert("Char fmt 1", "|%5c|", 'c');
 	printf_assert("Char fmt 2", "|%-5c|", 'c');
@@ -23,7 +23,7 @@ static void		test_fmt_char()
 	printf_assert("Char fmt 7", "|%00c|", '\0');
 }
 
-static void		test_fmt_str()
+static void		test_fmt_str(void)
 {
 	printf_assert("Str fmt 1", "|%s|", "rigolo");
 	printf_assert("Str fmt 2", "|%10s|", "rigolo");
@@ -35,7 +35,7 @@ static void		test_fmt_str()
 	printf_assert("Str fmt 8", "|%-10.15s|", "rigolo");
 }
 
-static void		test_fmt_int()
+static void		test_fmt_int(void)
 {
 	printf_assert("Int fmt 1:", "|%d|", 42);
 	printf_assert("Int fmt 2:", "|%d|", -42);
@@ -44,14 +44,20 @@ static void		test_fmt_int()
 	printf_assert("Int fmt 5:", "|%-5d|", 42);
 	printf_assert("Int fmt 6:", "|%d|", INT_MIN);
 	printf_assert("Int fmt 7:", "|%15d|", INT_MIN);
-	printf_assert("Int fmt 7:", "|%-15d|", INT_MIN);
-	printf_assert("Int fmt 7:", "|%.15d|", INT_MIN);
-	printf_assert("Int fmt 7:", "|%015d|", INT_MIN);
+	printf_assert("Int fmt 8:", "|%-15d|", INT_MIN);
+	printf_assert("Int fmt 9:", "|%.15d|", INT_MIN);
+	printf_assert("Int fmt 10:", "|%015d|", INT_MIN);
 }
 
-void		test_fmt()
+static void		test_fmt_hex(void)
+{
+	printf_assert("hex fmt 1:", "%x", 15);
+}
+
+void		test_fmt(void)
 {
 	// test_fmt_char();
 	// test_fmt_str();
-	test_fmt_int();
+	// test_fmt_int();
+	test_fmt_hex();
 }

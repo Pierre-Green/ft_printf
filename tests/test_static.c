@@ -6,13 +6,13 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:06:36 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/15 16:14:03 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:14:57 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-void			test_static()
+void			test_static(void)
 {
 	printf_assert("Static 1", "Hello i'm just like you");
 }

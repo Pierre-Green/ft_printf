@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:27:17 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 14:43:29 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:27:20 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUFF_H
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
 # define BUFF_SIZE 32
 
 typedef struct		s_buff

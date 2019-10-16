@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 15:12:50 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:27:45 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_fmt		parse_flags(t_state *state, t_fmt fmt)
 {
 	t_flag			flag;
 
-	while ((flag = g_flags[*state->frmt]))
+	while ((flag = g_flags[(unsigned char)*state->frmt]))
 	{
 		fmt.flags |= flag;
 		state->frmt++;
