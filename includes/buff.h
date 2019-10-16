@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:27:17 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 15:31:49 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 16:45:28 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ size_t				buff_write_int(t_buff *buff, int n);
 
 size_t				buff_write_uint(t_buff *buff, unsigned int n);
 
-size_t				buff_write_hex(t_buff *buff, unsigned int n, char uppercase);
+size_t				buff_write_hex(t_buff *buff, unsigned int n,
+	char uppercase);
 
 void				buff_flush_if_full(t_buff *buff);
 

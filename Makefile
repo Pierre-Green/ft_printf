@@ -6,7 +6,7 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/16 16:42:20 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/16 16:44:57 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(T_OBJS_DIR)%.o: tests/%.c
 	$(CC) $(CFLAGS) -I $(INCDIR) -o $@ -c $<
 
 clean:
-	rm -rf $(OBJS_DIR)
+	rm -rf $(OBJS_DIR) $(T_OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME) $(T_NAME)
