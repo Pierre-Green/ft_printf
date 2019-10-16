@@ -6,7 +6,7 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/16 16:09:59 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/16 16:22:27 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,11 @@ SRCS		=		clear.c				\
 
 T_SRCS	=			assert.c		\
 					main.c			\
-					test_static.c	\
-					test_fmt.c		\
+					tests_static.c	\
+					tests_char.c	\
+					tests_str.c		\
+					tests_int.c		\
+					tests_hex.c		\
 
 OBJS_DIR	=		./objs/lib/
 OBJS		=		$(addprefix $(OBJS_DIR),$(SRCS:.c=.o))

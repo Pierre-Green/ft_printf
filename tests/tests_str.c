@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tests_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:05:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 16:19:58 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/16 16:16:58 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/16 16:17:18 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-int		main(void)
+void	test_fmt_str(void)
 {
-	test_static();
-	test_fmt_char();
-	test_fmt_str();
-	test_fmt_int();
-	test_fmt_hex();
+	printf_assert("Str fmt 1", "|%s|", "rigolo");
+	printf_assert("Str fmt 2", "|%10s|", "rigolo");
+	printf_assert("Str fmt 3", "|%-10s|", "rigolo");
+	printf_assert("Str fmt 4", "|%010s|", "rigolo");
+	printf_assert("Str fmt 5", "|%.3s|", "rigolo");
+	printf_assert("Str fmt 6", "|%10.3s|", "rigolo");
+	printf_assert("Str fmt 7", "|%-10.3s|", "rigolo");
+	printf_assert("Str fmt 8", "|%-10.15s|", "rigolo");
 }

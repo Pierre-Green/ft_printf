@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tests_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:05:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 16:19:58 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/16 16:18:19 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/16 16:18:47 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-int		main(void)
+void	test_fmt_hex(void)
 {
-	test_static();
-	test_fmt_char();
-	test_fmt_str();
-	test_fmt_int();
-	test_fmt_hex();
+	printf_assert("hex fmt 1:", "|%X|", 42);
+	printf_assert("hex fmt 2:", "|%5x|", 42);
+	printf_assert("hex fmt 3:", "|%.5X|", 42);
+	printf_assert("hex fmt 4:", "|%05x|", 42);
+	printf_assert("hex fmt 5:", "|%-5x|", 42);
 }
