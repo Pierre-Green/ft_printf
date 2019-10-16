@@ -6,13 +6,13 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/16 16:25:10 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/16 16:42:20 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		clang
 
-CFLAGS		=		-g
+CFLAGS		=		-Wall -Werror -Wextra
 INCDIR		=		includes
 
 NAME		=		libftprintf.a
@@ -41,6 +41,7 @@ T_SRCS	=			assert.c		\
 					tests_char.c	\
 					tests_str.c		\
 					tests_int.c		\
+					tests_uint.c	\
 					tests_hex.c		\
 
 OBJS_DIR	=		./objs/lib/
