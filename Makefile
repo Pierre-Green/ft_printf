@@ -6,13 +6,13 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/16 15:28:35 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/16 16:06:03 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		clang
 
-CFLAGS		=		-Wall -Werror -Wextra -g
+CFLAGS		=		-g -Wall -Werror -Wextra
 INCDIR		=		includes
 
 NAME		=		libftprintf.a
@@ -23,6 +23,7 @@ SRCS		=		clear.c				\
 					buff/flush.c		\
 					buff/write_alpha.c	\
 					buff/write_num.c	\
+					buff/write_hex.c	\
 					fmt/fmt.c			\
 					fmt/convert_char.c	\
 					fmt/convert_str.c	\

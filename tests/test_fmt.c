@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 18:58:07 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 15:25:02 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/16 16:04:56 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ static void		test_fmt_int(void)
 
 static void		test_fmt_hex(void)
 {
-	printf_assert("hex fmt 1:", "%x", 15);
+	printf_assert("hex fmt 1:", "|%X|", 42);
+	printf_assert("hex fmt 2:", "|%5x|", 42);
+	printf_assert("hex fmt 3:", "|%.5X|", 42);
+	printf_assert("hex fmt 4:", "|%05x|", 42);
+	printf_assert("hex fmt 5:", "|%-5x|", 42);
 }
 
 void		test_fmt(void)
