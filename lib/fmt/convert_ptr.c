@@ -6,13 +6,14 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:36:36 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 15:43:35 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:26:25 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fmt.h"
 
-static size_t				write_ptr(t_buff *buff, unsigned long int val, size_t zero_len)
+static size_t				write_ptr(t_buff *buff, unsigned long int val,
+	size_t zero_len)
 {
 	size_t					count;
 
@@ -31,7 +32,8 @@ void						convert_ptr(t_state *state, t_fmt fmt)
 
 	if (fmt.flags & FLAG_NEGATIV)
 	{
-		state->count += write_ptr(state->buff, value, (fmt.precised ? len - 12 : 0));
+		state->count += write_ptr(state->buff, value,
+			(fmt.precised ? len - 12 : 0));
 		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
 	}
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
@@ -41,6 +43,7 @@ void						convert_ptr(t_state *state, t_fmt fmt)
 	else
 	{
 		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
-		state->count += write_ptr(state->buff, value, (fmt.precised ? len - 12 : 0));
+		state->count += write_ptr(state->buff, value,
+			(fmt.precised ? len - 12 : 0));
 	}
 }

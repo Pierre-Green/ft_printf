@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 15:14:38 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:25:43 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,21 @@ static void					convert_hex_internal(t_state *state, t_fmt fmt,
 
 	if (fmt.flags & FLAG_NEGATIV)
 	{
-		state->count += write_hex(state->buff, value, uppercase, len - fmt_hexlen(value));
-		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += write_hex(state->buff, value, uppercase,
+			len - fmt_hexlen(value));
+		state->count += buff_write_nchar(state->buff,
+			min_width - len, ' ');
 	}
 	else if (fmt.flags & FLAG_ZEROPAD)
 	{
-		state->count += write_hex(state->buff, value, uppercase, min_width - len);
+		state->count += write_hex(state->buff, value, uppercase,
+			min_width - len);
 	}
 	else
 	{
 		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
-		state->count += write_hex(state->buff, value, uppercase, len - fmt_hexlen(value));
+		state->count += write_hex(state->buff, value, uppercase,
+			len - fmt_hexlen(value));
 	}
 }
 

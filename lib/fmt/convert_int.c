@@ -6,14 +6,14 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 15:15:59 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:24:56 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fmt.h"
 #include "buff.h"
 
-static size_t					write_int(int value, t_buff *buff, size_t len)
+static size_t				write_int(int value, t_buff *buff, size_t len)
 {
 	unsigned int			u_value;
 	size_t					count;
