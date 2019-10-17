@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 18:43:24 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:09:08 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@
 # define FLAG_NEGATIV 0x00F00000
 # define MAX(a, b) (a >= b ? a : b)
 # define MIN(a, b) (a >= b ? b : a)
-# ifndef BONUS
-#  define BONUS 0
-# endif
-# if BONUS
-#  define FLAG_ALTERNA 0xF0000000
-#  define FLAG_SPACEAL 0x000F0000
-#  define FLAG_SIGNMUS 0x0000F000
-#  define FLAG_APOSTRO 0x00000F00
-# endif
 
 typedef uint32_t			t_flag;
 
@@ -42,15 +33,7 @@ void						fmt(t_state *state);
 
 static t_flag				g_flags[1 << 7] = {
 	['0'] = FLAG_ZEROPAD,
-	['-'] = FLAG_NEGATIV,
-# if BONUS
-
-	['#'] = FLAG_ALTERNA,
-	[' '] = FLAG_SPACEAL,
-	['+'] = FLAG_SIGNMUS,
-	['\''] = FLAG_APOSTRO
-# endif
-
+	['-'] = FLAG_NEGATIV
 };
 
 typedef void				(*t_convert_func)(t_state *, t_fmt);
