@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 17:59:45 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 18:41:52 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:12:55 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void						convert_char(t_state *state, t_fmt fmt)
 	value = va_arg(state->args, int);
 	if (fmt.flags & FLAG_NEGATIV)
 	{
-		buff_write_uchar(state->buff, value);
-		buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += buff_write_uchar(state->buff, value);
+		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
 	}
 	else if (fmt.flags & FLAG_ZEROPAD)
 	{
-		buff_write_nchar(state->buff, min_width - len, '0');
-		buff_write_uchar(state->buff, value);
+		state->count += buff_write_nchar(state->buff, min_width - len, '0');
+		state->count += buff_write_uchar(state->buff, value);
 	}
 	else
 	{
-		buff_write_nchar(state->buff, min_width - len, ' ');
-		buff_write_uchar(state->buff, value);
+		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += buff_write_uchar(state->buff, value);
 	}
 }

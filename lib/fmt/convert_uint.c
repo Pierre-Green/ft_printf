@@ -6,18 +6,22 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 16:45:43 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:21:30 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fmt.h"
 #include "buff.h"
 
-static void					write_int(unsigned int value, t_buff *buff,
+static size_t					write_uint(unsigned int value, t_buff *buff,
 	size_t len)
 {
-	buff_write_nchar(buff, len - ft_count_digits(value), '0');
-	buff_write_uint(buff, value);
+	size_t					count;
+
+	count = 0;
+	count += buff_write_nchar(buff, len - ft_count_digits(value), '0');
+	count += buff_write_uint(buff, value);
+	return (count);
 }
 
 void						convert_uint(t_state *state, t_fmt fmt)
@@ -30,16 +34,16 @@ void						convert_uint(t_state *state, t_fmt fmt)
 	min_width = MAX(len, fmt.min_width);
 	if (fmt.flags & FLAG_NEGATIV)
 	{
-		write_int(value, state->buff, len);
-		buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += write_uint(value, state->buff, len);
+		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
 	}
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
 	{
-		write_int(value, state->buff, min_width);
+		state->count += write_uint(value, state->buff, min_width);
 	}
 	else
 	{
-		buff_write_nchar(state->buff, min_width - len, ' ');
-		write_int(value, state->buff, len);
+		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += write_uint(value, state->buff, len);
 	}
 }

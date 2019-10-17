@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 18:47:20 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:14:38 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ static size_t				fmt_hexlen(unsigned int value)
 	return (i);
 }
 
-static void					write_hex(t_buff *buff, unsigned int value,
+static size_t				write_hex(t_buff *buff, unsigned int value,
 	char uppercase, size_t zero_len)
 {
-	buff_write_nchar(buff, zero_len, '0');
-	buff_write_hex(buff, value, uppercase);
+	size_t					count;
+
+	count = 0;
+	count += buff_write_nchar(buff, zero_len, '0');
+	count += buff_write_hex(buff, value, uppercase);
+	return (count);
 }
 
 static void					convert_hex_internal(t_state *state, t_fmt fmt,
@@ -42,17 +46,17 @@ static void					convert_hex_internal(t_state *state, t_fmt fmt,
 
 	if (fmt.flags & FLAG_NEGATIV)
 	{
-		write_hex(state->buff, value, uppercase, len - fmt_hexlen(value));
-		buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += write_hex(state->buff, value, uppercase, len - fmt_hexlen(value));
+		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
 	}
 	else if (fmt.flags & FLAG_ZEROPAD)
 	{
-		write_hex(state->buff, value, uppercase, min_width - len);
+		state->count += write_hex(state->buff, value, uppercase, min_width - len);
 	}
 	else
 	{
-		buff_write_nchar(state->buff, min_width - len, ' ');
-		write_hex(state->buff, value, uppercase, len - fmt_hexlen(value));
+		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += write_hex(state->buff, value, uppercase, len - fmt_hexlen(value));
 	}
 }
 

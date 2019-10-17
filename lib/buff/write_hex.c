@@ -6,17 +6,17 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:30:38 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 18:44:32 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:24:42 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "buff.h"
 
-size_t				buff_write_hex(t_buff *buff, unsigned int n, char uppercase)
+size_t					buff_write_hex(t_buff *buff, unsigned long int n, char uppercase)
 {
-	char			t_buff[16];
-	size_t			i;
-	unsigned int	tmp;
+	char				t_buff[16];
+	size_t				i;
+	unsigned long int	tmp;
 
 	i = 0;
 	(void)uppercase;

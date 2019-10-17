@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 16:12:07 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:17:36 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void				fmt(t_state *state)
 	fmt = parse_precision(state, fmt);
 	f_convert = 0;
 	if (*state->frmt == '%')
-		buff_write_uchar(state->buff, '%');
+		state->count += buff_write_uchar(state->buff, '%');
 	else if (!(f_convert = g_conversions[(unsigned char)*state->frmt]))
 		return ;
 	state->frmt++;
