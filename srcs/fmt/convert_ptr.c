@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:36:36 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/19 16:03:04 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/19 19:45:57 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,10 @@ void						convert_ptr(t_state *state, t_fmt fmt)
 	size_t					min_width;
 	size_t					j;
 
-	j = 12;
 	len = 14;
-	if (!value)
-	{
-		len = 3;
+	j = 12;
+	if (!value && (len = 3))
 		j = (fmt.precised && fmt.precision == 0 ? 0 : 1);
-	}
 	len = (fmt.precised ? fmt.precision : len);
 	min_width = MAX(len, fmt.min_width);
 	if (fmt.flags & FLAG_NEGATIV)
@@ -48,9 +45,7 @@ void						convert_ptr(t_state *state, t_fmt fmt)
 		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
 	}
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
-	{
 		state->count += write_ptr(state->buff, value, min_width - len, j);
-	}
 	else
 	{
 		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
