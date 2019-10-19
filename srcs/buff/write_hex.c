@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:30:38 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 15:24:42 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:41:30 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ size_t					buff_write_hex(t_buff *buff, unsigned long int n, char uppercase)
 	unsigned long int	tmp;
 
 	i = 0;
-	(void)uppercase;
+	if (!n)
+		return (buff_write_uchar(buff, '0'));
 	while (n)
 	{
 		tmp = n % 16;

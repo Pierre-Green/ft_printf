@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 16:26:41 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:50:22 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ static size_t				write_uint(unsigned int value, t_buff *buff,
 	size_t					count;
 
 	count = 0;
-	count += buff_write_nchar(buff, len - ft_count_digits(value), '0');
-	count += buff_write_uint(buff, value);
+	if (len)
+	{
+		count += buff_write_nchar(buff, len - ft_count_digits(value), '0');
+		count += buff_write_uint(buff, value);
+	}
 	return (count);
 }
 
@@ -31,6 +34,8 @@ void						convert_uint(t_state *state, t_fmt fmt)
 	size_t					min_width;
 
 	len = MAX(ft_count_digits(value), fmt.precision);
+	if (value == 0 && fmt.precised && !fmt.precision)
+		len = 0;
 	min_width = MAX(len, fmt.min_width);
 	if (fmt.flags & FLAG_NEGATIV)
 	{

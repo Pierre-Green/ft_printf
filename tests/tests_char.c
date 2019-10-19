@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:16:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 16:16:36 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:29:23 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,7 @@ void	test_fmt_char(void)
 	printf_assert("Char fmt 5", "|%05c|", 'c');
 	printf_assert("Char fmt 6", "|%00c|", 'c');
 	printf_assert("Char fmt 7", "|%00c|", '\0');
+	printf_assert("Char fmt 8", "|%00c|", "44");
+	printf_assert("Char fmt 9", "|%00c|", NULL);
+	printf_assert("Char fmt 10", "|%.0c|", 'a');
 }

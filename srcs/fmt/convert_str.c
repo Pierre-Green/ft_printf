@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:06:38 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 15:16:20 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:38:24 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ static size_t				fmt_strlen(char *str, t_fmt fmt)
 	size_t					i;
 
 	i = 0;
-	while (*(str + i))
-		i++;
+	if (!str)
+		i = 6;
+	else
+		while (*(str + i))
+			i++;
 	return ((fmt.precised ? MIN(i, fmt.precision) : i));
 }
 
@@ -29,6 +32,8 @@ void						convert_str(t_state *state, t_fmt fmt)
 	const size_t			len = fmt_strlen((char *)value, fmt);
 	const size_t			min_width = MAX(len, fmt.min_width);
 
+	if (!value)
+		value = "(null)";
 	if (fmt.flags & FLAG_NEGATIV)
 	{
 		state->count += buff_write_strl(state->buff, (char *)value, len);

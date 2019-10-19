@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 16:25:43 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:12:31 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static size_t				fmt_hexlen(unsigned int value)
 	size_t					i;
 
 	i = 0;
+	if (!value)
+		return (1);
 	while (value)
 	{
 		i++;
@@ -33,7 +35,8 @@ static size_t				write_hex(t_buff *buff, unsigned int value,
 
 	count = 0;
 	count += buff_write_nchar(buff, zero_len, '0');
-	count += buff_write_hex(buff, value, uppercase);
+	if (uppercase != 43)
+		count += buff_write_hex(buff, value, uppercase);
 	return (count);
 }
 
@@ -44,6 +47,8 @@ static void					convert_hex_internal(t_state *state, t_fmt fmt,
 	const size_t			len = MAX(fmt_hexlen(value), fmt.precision);
 	const size_t			min_width = MAX(len, fmt.min_width);
 
+	if (fmt.precised && fmt.precision == 0)
+		uppercase = 43;
 	if (fmt.flags & FLAG_NEGATIV)
 	{
 		state->count += write_hex(state->buff, value, uppercase,
@@ -51,7 +56,7 @@ static void					convert_hex_internal(t_state *state, t_fmt fmt,
 		state->count += buff_write_nchar(state->buff,
 			min_width - len, ' ');
 	}
-	else if (fmt.flags & FLAG_ZEROPAD)
+	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
 	{
 		state->count += write_hex(state->buff, value, uppercase,
 			min_width - len);

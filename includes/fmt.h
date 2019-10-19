@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 15:09:08 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:37:37 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "state.h"
 # define FLAG_ZEROPAD 0x0F000000
 # define FLAG_NEGATIV 0x00F00000
+# define OUT_NULL "(null)"
 # define MAX(a, b) (a >= b ? a : b)
 # define MIN(a, b) (a >= b ? b : a)
 
