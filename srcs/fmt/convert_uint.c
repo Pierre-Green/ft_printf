@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/19 18:50:22 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 15:55:09 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,44 @@ static size_t				write_uint(unsigned int value, t_buff *buff,
 	return (count);
 }
 
+static void					convert_uint_negativ(t_state *state, t_fmt fmt, const unsigned int value, size_t len)
+{
+	size_t					minwidth;
+
+	minwidth = MAX(len, fmt.min_width);
+	state->count += write_uint(value, state->buff, len);
+	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
+}
+
+static void					convert_uint_zeropad(t_state *state, t_fmt fmt, const unsigned int value, size_t len)
+{
+	size_t					minwidth;
+
+	minwidth = MAX(len, fmt.min_width);
+	state->count += write_uint(value, state->buff, minwidth);
+}
+
+static void					convert_uint_default(t_state *state, t_fmt fmt, const unsigned int value, size_t len)
+{
+	size_t					minwidth;
+
+	minwidth = MAX(len, fmt.min_width);
+	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
+	state->count += write_uint(value, state->buff, len);
+}
+
 void						convert_uint(t_state *state, t_fmt fmt)
 {
 	const unsigned int		value = va_arg(state->args, int);
 	size_t					len;
-	size_t					min_width;
 
 	len = MAX(ft_count_digits(value), fmt.precision);
 	if (value == 0 && fmt.precised && !fmt.precision)
 		len = 0;
-	min_width = MAX(len, fmt.min_width);
 	if (fmt.flags & FLAG_NEGATIV)
-	{
-		state->count += write_uint(value, state->buff, len);
-		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
-	}
+		convert_uint_negativ(state, fmt, value, len);
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
-	{
-		state->count += write_uint(value, state->buff, min_width);
-	}
+		convert_uint_zeropad(state, fmt, value, len);
 	else
-	{
-		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
-		state->count += write_uint(value, state->buff, len);
-	}
+		convert_uint_default(state, fmt, value, len);
 }
