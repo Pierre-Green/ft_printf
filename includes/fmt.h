@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/19 15:37:37 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 15:03:50 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define OUT_NULL "(null)"
 # define MAX(a, b) (a >= b ? a : b)
 # define MIN(a, b) (a >= b ? b : a)
+# define ABS(a) (a < 0 ? a * -1 : a)
 
 typedef uint32_t			t_flag;
 
@@ -28,7 +29,7 @@ typedef struct				s_fmt
 	t_flag					flags;
 	size_t					min_width;
 	char					precised;
-	size_t					precision;
+	ssize_t					precision;
 }							t_fmt;
 void						fmt(t_state *state);
 
