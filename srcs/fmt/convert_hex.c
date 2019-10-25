@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 17:28:42 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 18:49:35 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,27 @@ static size_t				write_hex(t_buff *buff, unsigned int value, size_t zero_len)
 	return (count);
 }
 
-static void					convert_hex_negativ(t_state *state, t_fmt fmt, const unsigned int value, size_t len)
+static void					convert_hex_negativ(t_state *state, t_fmt fmt, size_t len)
 {
 	const size_t			minwidth = MAX(len, fmt.minwidth);
+	const unsigned int		value = fmt.value.u;
 
 	state->count += write_hex(state->buff, value, len - ft_count_uint_base(value, 16));
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 }
 
-static void					convert_hex_zeropad(t_state *state, t_fmt fmt, const unsigned int value, size_t len)
+static void					convert_hex_zeropad(t_state *state, t_fmt fmt, size_t len)
 {
 	const size_t			minwidth = MAX(len, fmt.minwidth);
+	const unsigned int		value = fmt.value.u;
 
 	state->count += write_hex(state->buff, value, minwidth - len);
 }
 
-static void					convert_hex_default(t_state *state, t_fmt fmt, const unsigned int value, size_t len)
+static void					convert_hex_default(t_state *state, t_fmt fmt, size_t len)
 {
 	const size_t			minwidth = MAX(len, fmt.minwidth);
+	const unsigned int		value = fmt.value.u;
 
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 	state->count += write_hex(state->buff, value, len - ft_count_uint_base(value, 16));
@@ -48,13 +51,12 @@ static void					convert_hex_default(t_state *state, t_fmt fmt, const unsigned in
 
 void						convert_hex(t_state *state, t_fmt fmt)
 {
-	const unsigned int		value = va_arg(state->args, int);
-	const size_t			len = MAX(ft_count_uint_base(value, 16), fmt.precision);
+	const size_t			len = MAX(ft_count_uint_base(fmt.value.u, 16), fmt.precision);
 
 	if (fmt.flags & FLAG_NEGATIV)
-		convert_hex_negativ(state, fmt, value, len);
+		convert_hex_negativ(state, fmt, len);
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
-		convert_hex_zeropad(state, fmt, value, len);
+		convert_hex_zeropad(state, fmt, len);
 	else
-		convert_hex_default(state, fmt, value, len);
+		convert_hex_default(state, fmt, len);
 }

@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 16:40:16 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 18:45:39 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_fmt		get_initial_fmt(void)
 {
-	return ((t_fmt){ 0, 0, 0, 0 });
+	return ((t_fmt){ 0, 0, 0, 0, 0 });
 }
 
 static t_fmt		parse_flags(t_state *state, t_fmt fmt)
@@ -68,19 +68,24 @@ static t_fmt		parse_precision(t_state *state, t_fmt fmt)
 void				fmt(t_state *state)
 {
 	t_fmt			fmt;
-	t_convert_func	f_convert;
+	t_convert_func	f_conv;
+	t_convert_valu	f_valu;
 
 	state->frmt++;
 	fmt = get_initial_fmt();
 	fmt = parse_flags(state, fmt);
 	fmt = parse_minwidth(state, fmt);
 	fmt = parse_precision(state, fmt);
-	f_convert = 0;
 	if (*state->frmt == '%')
 		state->count += buff_write_uchar(state->buff, '%');
-	else if (!(f_convert = g_conversions[(unsigned char)*state->frmt]))
-		return ;
+	else
+	{
+		if (!(f_conv = g_conversions[(unsigned char)*state->frmt]))
+			return ;
+		if (!(f_valu = g_values[(unsigned char)*state->frmt]))
+			return ;
+		fmt = f_valu(state, fmt);
+		f_conv(state, fmt);
+	}
 	state->frmt++;
-	if (f_convert)
-		f_convert(state, fmt);
 }
