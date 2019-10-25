@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 16:40:16 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:12:21 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static size_t				write_uint(unsigned int value, t_buff *buff,
 	count = 0;
 	if (len)
 	{
-		count += buff_write_nchar(buff, len - ft_count_digits(value), '0');
+		count += buff_write_nchar(buff, len - ft_count_uint_base(value, 10), '0');
 		count += buff_write_uint(buff, value);
 	}
 	return (count);
@@ -58,7 +58,7 @@ void						convert_uint(t_state *state, t_fmt fmt)
 	const unsigned int		value = va_arg(state->args, int);
 	size_t					len;
 
-	len = MAX(ft_count_digits(value), fmt.precision);
+	len = MAX(ft_count_uint_base(value, 10), fmt.precision);
 	if (value == 0 && fmt.precised && !fmt.precision)
 		len = 0;
 	if (fmt.flags & FLAG_NEGATIV)

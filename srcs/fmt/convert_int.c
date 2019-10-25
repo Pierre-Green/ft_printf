@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 16:40:20 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:11:59 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void				convert_int_negativ(t_state *state, t_fmt fmt, const int value, s
 	size_t				minwidth;
 	size_t				count;
 
-	count = ft_count_digits(ABS(value));
+	count = ft_count_uint_base(ABS(value), 10);
 	minwidth = MAX(len, fmt.minwidth);
 	if (fmt.precision < 0)
 		minwidth = MAX(minwidth, fmt.precision * -1);
@@ -52,7 +52,7 @@ static void				convert_int_zeropad(t_state *state, t_fmt fmt, const int value)
 	size_t				len;
 	size_t				minwidth;
 
-	len = ft_count_digits(value);
+	len = ft_count_uint_base(value, 10);
 	minwidth = MAX(len, fmt.minwidth);
 	state->count += write_int(value, state->buff, len, minwidth);
 }
@@ -62,7 +62,7 @@ static void				convert_int_default(t_state *state, t_fmt fmt, const int value, s
 	size_t				minwidth;
 	size_t				count;
 
-	count = ft_count_digits(ABS(value));
+	count = ft_count_uint_base(ABS(value), 10);
 	if (fmt.precision < 0)
 		convert_int_negativ(state, fmt, value, len);
 	else
@@ -78,7 +78,7 @@ void						convert_int(t_state *state, t_fmt fmt)
 	const int				value = va_arg(state->args, int);
 	size_t					len;
 
-	len = ft_count_digits(ABS(value));
+	len = ft_count_uint_base(ABS(value), 10);
 	if (value < 0)
 		len++;
 	if (fmt.precision >= 0)

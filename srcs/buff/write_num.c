@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:35:31 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/17 15:18:59 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:12:41 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t				buff_write_uint(t_buff *buff, unsigned int n)
 	size_t			pow;
 	size_t			i;
 
-	pow = ft_count_digits(n);
+	pow = ft_count_uint_base(n, 10);
 	i = pow;
 	while (i)
 	{
