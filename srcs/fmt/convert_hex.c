@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 17:27:13 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:28:42 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void					convert_hex_default(t_state *state, t_fmt fmt, const unsigned in
 	state->count += write_hex(state->buff, value, len - ft_count_uint_base(value, 16));
 }
 
-static void					convert_hex(t_state *state, t_fmt fmt)
+void						convert_hex(t_state *state, t_fmt fmt)
 {
 	const unsigned int		value = va_arg(state->args, int);
 	const size_t			len = MAX(ft_count_uint_base(value, 16), fmt.precision);
