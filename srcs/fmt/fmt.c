@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 14:28:30 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:40:16 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static t_fmt		parse_minwidth(t_state *state, t_fmt fmt)
 {
 	while (*state->frmt >= '0' && *state->frmt <= '9')
 	{
-		fmt.min_width *= 10;
-		fmt.min_width += (*state->frmt) - '0';
+		fmt.minwidth *= 10;
+		fmt.minwidth += (*state->frmt) - '0';
 		state->frmt++;
 	}
 	return (fmt);

@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 15:34:50 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:40:20 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void				convert_int_negativ(t_state *state, t_fmt fmt, const int value, s
 	size_t				count;
 
 	count = ft_count_digits(ABS(value));
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	if (fmt.precision < 0)
 		minwidth = MAX(minwidth, fmt.precision * -1);
 	state->count += write_int(value, state->buff, count, len);
@@ -53,7 +53,7 @@ static void				convert_int_zeropad(t_state *state, t_fmt fmt, const int value)
 	size_t				minwidth;
 
 	len = ft_count_digits(value);
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	state->count += write_int(value, state->buff, len, minwidth);
 }
 
@@ -67,7 +67,7 @@ static void				convert_int_default(t_state *state, t_fmt fmt, const int value, s
 		convert_int_negativ(state, fmt, value, len);
 	else
 	{
-		minwidth = MAX(len, fmt.min_width);
+		minwidth = MAX(len, fmt.minwidth);
 		state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 		state->count += write_int(value, state->buff, count, len);
 	}

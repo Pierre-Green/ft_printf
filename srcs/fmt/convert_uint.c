@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 15:55:09 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:40:16 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void					convert_uint_negativ(t_state *state, t_fmt fmt, const unsigned i
 {
 	size_t					minwidth;
 
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	state->count += write_uint(value, state->buff, len);
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 }
@@ -40,7 +40,7 @@ static void					convert_uint_zeropad(t_state *state, t_fmt fmt, const unsigned i
 {
 	size_t					minwidth;
 
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	state->count += write_uint(value, state->buff, minwidth);
 }
 
@@ -48,7 +48,7 @@ static void					convert_uint_default(t_state *state, t_fmt fmt, const unsigned i
 {
 	size_t					minwidth;
 
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 	state->count += write_uint(value, state->buff, len);
 }

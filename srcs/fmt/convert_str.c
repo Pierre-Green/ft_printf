@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:06:38 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 15:45:38 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:40:16 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void					convert_str_negativ(t_state *state, t_fmt fmt, const char *value
 {
 	size_t					minwidth;
 
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	state->count += buff_write_strl(state->buff, (char *)value, len);
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 }
@@ -39,7 +39,7 @@ static void					convert_str_zeropad(t_state *state, t_fmt fmt, const char *value
 {
 	size_t					minwidth;
 
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	state->count += buff_write_nchar(state->buff, minwidth - len, '0');
 	state->count += buff_write_strl(state->buff, (char *)value, len);
 }
@@ -48,7 +48,7 @@ static void					convert_str_default(t_state *state, t_fmt fmt, const char *value
 {
 	size_t					minwidth;
 
-	minwidth = MAX(len, fmt.min_width);
+	minwidth = MAX(len, fmt.minwidth);
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 	state->count += buff_write_strl(state->buff, (char *)value, len);
 }

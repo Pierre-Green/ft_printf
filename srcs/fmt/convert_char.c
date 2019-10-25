@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 17:59:45 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 16:39:43 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:40:26 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void					convert_char_default(t_state *state, t_fmt fmt, const char value
 
 void						convert_char(t_state *state, t_fmt fmt)
 {
-	const size_t			minwidth = MAX(fmt.min_width, 1);
+	const size_t			minwidth = MAX(fmt.minwidth, 1);
 	const unsigned char		value = va_arg(state->args, int);
 
 	if (fmt.flags & FLAG_NEGATIV)

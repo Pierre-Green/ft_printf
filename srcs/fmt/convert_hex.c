@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/19 17:12:31 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:40:24 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void					convert_hex_internal(t_state *state, t_fmt fmt,
 {
 	const unsigned int		value = va_arg(state->args, int);
 	const size_t			len = MAX(fmt_hexlen(value), fmt.precision);
-	const size_t			min_width = MAX(len, fmt.min_width);
+	const size_t			minwidth = MAX(len, fmt.minwidth);
 
 	if (fmt.precised && fmt.precision == 0)
 		uppercase = 43;
@@ -54,16 +54,16 @@ static void					convert_hex_internal(t_state *state, t_fmt fmt,
 		state->count += write_hex(state->buff, value, uppercase,
 			len - fmt_hexlen(value));
 		state->count += buff_write_nchar(state->buff,
-			min_width - len, ' ');
+			minwidth - len, ' ');
 	}
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
 	{
 		state->count += write_hex(state->buff, value, uppercase,
-			min_width - len);
+			minwidth - len);
 	}
 	else
 	{
-		state->count += buff_write_nchar(state->buff, min_width - len, ' ');
+		state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 		state->count += write_hex(state->buff, value, uppercase,
 			len - fmt_hexlen(value));
 	}
