@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 16:47:11 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:58:26 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include "state.h"
+# include "libft.h"
 # define FLAG_ZEROPAD 0x0F000000
 # define FLAG_NEGATIV 0x00F00000
 # define OUT_NULL "(null)"

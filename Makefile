@@ -6,16 +6,17 @@
 #    By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:32:36 by pguthaus          #+#    #+#              #
-#    Updated: 2019/10/25 14:29:42 by pguthaus         ###   ########.fr        #
+#    Updated: 2019/10/25 17:01:50 by pguthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		clang
 
 CFLAGS		=		-g
-INCDIR		=		includes
+INCS		=		-I includes -I libft/includes
 
 NAME		=		libftprintf.a
+LIBFT		=		libft/libft.a
 T_NAME		=		tests_bin
 
 SRCS		=		clear.c				\
@@ -31,10 +32,6 @@ SRCS		=		clear.c				\
 					fmt/convert_int.c	\
 					fmt/convert_uint.c	\
 					fmt/convert_hex.c	\
-										\
-					ft/ft_bzero.c		\
-					ft/ft_count_digits.c\
-					ft/ft_strlen.c		\
 
 T_SRCS	=			assert.c		\
 					main.c			\
@@ -55,20 +52,24 @@ T_OBJS		=		$(addprefix $(T_OBJS_DIR),$(T_SRCS:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
+	@cp $(LIBFT) $(NAME)
 	ar rcs $(NAME) $(OBJS)
 
 $(OBJS_DIR)%.o: srcs/%.c
 	@if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CFLAGS) -I $(INCDIR) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCS) -o $@ -c $<
 
 tests: $(NAME) $(T_OBJS)
-	@$(CC) $(CFLAGS) -I $(INCDIR) $(T_OBJS) $(NAME) -o $(T_NAME)
+	@$(CC) $(CFLAGS) $(INCS) $(T_OBJS) $(NAME) -o $(T_NAME)
 	@./$(T_NAME)
 
 $(T_OBJS_DIR)%.o: tests/%.c
 	@if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CFLAGS) -I $(INCDIR) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCS) -o $@ -c $<
+
+$(LIBFT):
+	$(MAKE) -C libft libft.a
 
 clean:
 	rm -rf $(OBJS_DIR) $(T_OBJS_DIR)

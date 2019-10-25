@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 11:58:05 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 13:43:39 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/08 11:28:47 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/10 11:37:09 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void				ft_bzero(void *s, size_t n)
+t_list				*ft_lstnew(void *content)
 {
-	unsigned char	*bytes;
+	t_list			*list;
 
-	bytes = s;
-	while (n--)
-	{
-		bytes[n] = 0;
-	}
+	if ((list = malloc(sizeof(t_list))) == NULL)
+		return (NULL);
+	list->content = content;
+	list->next = NULL;
+	return (list);
 }

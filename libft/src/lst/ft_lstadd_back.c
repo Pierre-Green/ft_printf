@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 14:57:37 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/16 13:43:50 by pguthaus         ###   ########.fr       */
+/*   Created: 2019/10/08 11:49:58 by pguthaus          #+#    #+#             */
+/*   Updated: 2019/10/17 13:52:21 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-size_t		ft_strlen(const char *s)
+void				ft_lstadd_back(t_list **alst, t_list *new)
 {
-	size_t	len;
+	t_list			*node;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	node = *alst;
+	if (!node)
+		*alst = new;
+	else
+	{
+		while (node->next)
+			node = node->next;
+		node->next = new;
+	}
 }
