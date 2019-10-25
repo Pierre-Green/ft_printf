@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:36:36 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 16:40:16 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:50:38 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,42 @@ static size_t				write_ptr(t_buff *buff, unsigned long int val,
 	return (count);
 }
 
+static void					convert_ptr_negativ(t_state *state, t_fmt fmt, const unsigned long int value, size_t len)
+{
+	size_t					minwidth;
+
+	minwidth = MAX(len, fmt.minwidth);
+	state->count += write_ptr(state->buff, value, (fmt.precised ? len - (PTR_LEN - 2) : 0), PTR_LEN - 2);
+	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
+}
+
+static void					convert_ptr_zeropad(t_state *state, t_fmt fmt, const unsigned long int value, size_t len)
+{
+	size_t					minwidth;
+
+	minwidth = MAX(len, fmt.minwidth);
+	state->count += write_ptr(state->buff, value, minwidth - len, (PTR_LEN - 2));
+}
+
+static void					convert_ptr_default(t_state *state, t_fmt fmt, const unsigned long int value, size_t len)
+{
+	size_t					minwidth;
+
+	minwidth = MAX(len, fmt.minwidth);
+	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
+	state->count += write_ptr(state->buff, value, (fmt.precised ? len - (PTR_LEN - 2) : 0), PTR_LEN - 2);
+}
+
 void						convert_ptr(t_state *state, t_fmt fmt)
 {
 	const unsigned long int	value = va_arg(state->args, long int);
 	size_t					len;
-	size_t					minwidth;
-	size_t					j;
 
-	len = 14;
-	j = 12;
-	if (!value && (len = 3))
-		j = (fmt.precised && fmt.precision == 0 ? 0 : 1);
-	len = (fmt.precised ? fmt.precision : len);
-	minwidth = MAX(len, fmt.minwidth);
+	len = (fmt.precised ? fmt.precision : PTR_LEN);
 	if (fmt.flags & FLAG_NEGATIV)
-	{
-		state->count += write_ptr(state->buff, value,
-			(fmt.precised ? len - j : 0), j);
-		state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
-	}
+		convert_ptr_negativ(state, fmt, value, len);
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
-		state->count += write_ptr(state->buff, value, minwidth - len, j);
+		convert_ptr_zeropad(state, fmt, value, len);
 	else
-	{
-		state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
-		state->count += write_ptr(state->buff, value,
-			(fmt.precised ? len - j : 0), j);
-	}
+		convert_ptr_default(state, fmt, value, len);
 }
