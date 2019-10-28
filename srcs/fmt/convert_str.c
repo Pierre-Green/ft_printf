@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:06:38 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 18:56:33 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/28 15:40:26 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,13 @@ void						convert_str(t_state *state, t_fmt fmt)
 {
 	const size_t			len = fmt_strlen(fmt.value.s, fmt);
 
-	if (fmt.flags & FLAG_NEGATIV)
-		convert_str_negativ(state, fmt, len);
-	else if (fmt.flags & FLAG_ZEROPAD)
-		convert_str_zeropad(state, fmt, len);
+	if (fmt.precised && fmt.precision < 0)
+		state->count += buff_write_nchar(state->buff, ABS(fmt.precision), ' ');
 	else
-		convert_str_default(state, fmt, len);
+		if (fmt.flags & FLAG_NEGATIV)
+			convert_str_negativ(state, fmt, len);
+		else if (fmt.flags & FLAG_ZEROPAD)
+			convert_str_zeropad(state, fmt, len);
+		else
+			convert_str_default(state, fmt, len);
 }
