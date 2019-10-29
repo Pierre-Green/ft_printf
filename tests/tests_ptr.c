@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:16:58 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/19 16:03:42 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 14:48:07 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void		test_fmt_ptr(void)
 	printf_assert("Ptr fmt 8", "|%10p|", NULL);
 	printf_assert("Ptr fmt 9", "|%.10p|", NULL);
 	printf_assert("Ptr fmt 10", "|%.1p|", NULL);
-	printf_assert("Ptr fmt 10", "|%.0p|", NULL);
+	printf_assert("Ptr fmt 11", "|%.0p|", NULL);
+	printf_assert("Ptr fmt 12", "|%.-15p|", ptr);
+	printf_assert("Ptr fmt 13", "|%15p|", ptr);
+	printf_assert("Ptr fmt 14", "|%-0.-15p|", ptr);
+	printf_assert("Ptr fmt 14", "|%.-25p|", ptr);
 	free(ptr);
 }

@@ -6,87 +6,75 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:36:36 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/28 16:10:03 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 14:47:21 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fmt.h"
 
 static size_t				write_ptr(t_buff *buff, unsigned long int val,
-	size_t zero_len)
+	size_t minlen, t_bool none)
 {
 	size_t					count;
+	size_t					len;
 
 	count = 0;
-	count += buff_write_str(buff, "0x");
-	count += buff_write_nchar(buff, zero_len, '0');
-	count += buff_write_hex(buff, val, 0);
+	len = PTR_LEN;
+	if (!val)
+		len = 1;
+	count += buff_write_strl(buff, "0x", 2);
+	count += buff_write_nchar(buff, minlen - len, '0');
+	if (!none)
+		count += buff_write_hex(buff, val, false);
 	return (count);
 }
 
-static void					convert_ptr_negativ(t_state *state, t_fmt fmt, size_t len)
+static void					convert_ptr_negativ(t_state *state, t_fmt fmt, size_t len, t_bool none)
 {
 	size_t					minwidth;
-	size_t					zero_len;
+	size_t					minlen;
 
 	minwidth = MAX(len, fmt.minwidth);
-	if (fmt.precised)
-		zero_len = MAX(len, fmt.precision) - PTR_LEN;
-	else
-		zero_len = 0;
-	if (!fmt.value.u)
-	{
-		state->count += buff_write_strl(state->buff, "0x", 2);
-		state->count += buff_write_nchar(state->buff, (fmt.precised ? fmt.precision : 1), '0');
-	}
-	else
-	{
-		state->count += write_ptr(state->buff, fmt.value.u, (fmt.precised ? MAX(len, fmt.precision) - PTR_LEN : 0));
-		state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
-	}
+	minlen = len - 2;
+	if (fmt.precision > 0)
+		minlen = MAX(fmt.precision, minlen);
+	state->count += write_ptr(state->buff, fmt.value.u, minlen, none);
+	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 }
 
-static void					convert_ptr_zeropad(t_state *state, t_fmt fmt, size_t len)
+static void					convert_ptr_zeropad(t_state *state, t_fmt fmt, size_t len, t_bool none)
 {
-	size_t					minwidth;
-
-	minwidth = MAX(len, fmt.minwidth);
-	state->count += write_ptr(state->buff, fmt.value.u, minwidth - len);
+	state->count += write_ptr(state->buff, fmt.value.u, MAX(len, fmt.minwidth) - 2, none);
 }
 
-static void					convert_ptr_default(t_state *state, t_fmt fmt, size_t len)
+static void					convert_ptr_default(t_state *state, t_fmt fmt, size_t len, t_bool none)
 {
 	size_t					minwidth;
-	size_t					zero_len;
 
 	minwidth = MAX(len, fmt.minwidth);
-	if (fmt.precised)
-		zero_len = MAX(len, fmt.precision) - PTR_LEN;
-	else
-		zero_len = 0;
-	if (!fmt.value.u)
-	{
-		len = MAX(6, fmt.precision);
-		state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
-		state->count += buff_write_strl(state->buff, "0x", 2);
-		state->count += buff_write_nchar(state->buff, (fmt.precised ? fmt.precision : 1), '0');
-	}
-	else
-	{
-		state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
-		state->count += write_ptr(state->buff, fmt.value.u, zero_len);
-	}
+	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
+	state->count += write_ptr(state->buff, fmt.value.u, MAX(len - 2, fmt.precision), none);
 }
 
 void						convert_ptr(t_state *state, t_fmt fmt)
 {
 	size_t					len;
+	t_bool					none;
 
 	len = PTR_LEN + 2;
-	if (fmt.flags & FLAG_NEGATIV)
-		convert_ptr_negativ(state, fmt, len);
+	none = false;
+	if (!fmt.value.u)
+		len = 3;
+	if (!fmt.value.u && fmt.precised && !fmt.precision)
+		none = true;
+	if (fmt.precision >= 0)
+		len = MAX(len, fmt.precision);
+	if (fmt.precision < 0)
+		fmt.minwidth = ABS(fmt.precision);
+	if (fmt.flags & FLAG_NEGATIV || fmt.precision < 0)
+		convert_ptr_negativ(state, fmt, len, none);
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
-		convert_ptr_zeropad(state, fmt, len);
+		convert_ptr_zeropad(state, fmt, len, none);
 	else
-		convert_ptr_default(state, fmt, len);
+		convert_ptr_default(state, fmt, len, none);
 }
