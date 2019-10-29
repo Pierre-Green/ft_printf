@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 11:52:36 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 12:16:31 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void				convert_int_negativ(t_state *state, t_fmt fmt, size_t len)
 	size_t				count;
 
 	count = ft_count_uint_base((unsigned int)ABS(value), 10);
+	if (fmt.precision < 0)
+		fmt.minwidth = 0;
 	minwidth = MAX(len, fmt.minwidth);
 	if (fmt.precision < 0)
 		minwidth = MAX(minwidth, fmt.precision * -1);
