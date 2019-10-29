@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:06:38 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/28 15:40:26 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 12:58:10 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void					convert_str_negativ(t_state *state, t_fmt fmt, size_t len)
 	if (fmt.value.s)
 		state->count += buff_write_strl(state->buff, fmt.value.s, len);
 	else
-		state->count += buff_write_strl(state->buff, "(null)", len);
+		state->count += buff_write_strl(state->buff, STR_NULL, len);
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 }
 
@@ -47,7 +47,7 @@ static void					convert_str_zeropad(t_state *state, t_fmt fmt, size_t len)
 	if (fmt.value.s)
 		state->count += buff_write_strl(state->buff, fmt.value.s, len);
 	else
-		state->count += buff_write_strl(state->buff, "(null)", len);
+		state->count += buff_write_strl(state->buff, STR_NULL, len);
 }
 
 static void					convert_str_default(t_state *state, t_fmt fmt, size_t len)
@@ -59,14 +59,14 @@ static void					convert_str_default(t_state *state, t_fmt fmt, size_t len)
 	if (fmt.value.s)
 		state->count += buff_write_strl(state->buff, fmt.value.s, len);
 	else
-		state->count += buff_write_strl(state->buff, "(null)", len);
+		state->count += buff_write_strl(state->buff, STR_NULL, len);
 }
 
 void						convert_str(t_state *state, t_fmt fmt)
 {
 	const size_t			len = fmt_strlen(fmt.value.s, fmt);
 
-	if (fmt.precised && fmt.precision < 0)
+	if (fmt.precision < 0)
 		state->count += buff_write_nchar(state->buff, ABS(fmt.precision), ' ');
 	else
 		if (fmt.flags & FLAG_NEGATIV)

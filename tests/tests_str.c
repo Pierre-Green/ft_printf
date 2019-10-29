@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:16:58 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/28 15:42:02 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 12:57:19 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	test_fmt_str(void)
 	printf_assert("Str fmt 18", "|%-153s|", "sexy");
 	printf_assert("Str fmt 19", "|%.0s|", "0");
 	printf_assert("Str fmt 20", "|%.-5s|", NULL);
+	printf_assert("Str fmt 21", "|%0-23.2s|", "abracadabra");
 }

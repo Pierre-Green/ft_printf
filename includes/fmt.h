@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 12:37:51 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 12:57:53 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define MIN(a, b) (a >= b ? b : a)
 # define ABS(a) (a < 0 ? a * -1 : a)
 # define PTR_LEN 12
+# define STR_NULL "(null)"
 
 typedef uint32_t			t_flag;
 
