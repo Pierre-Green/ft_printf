@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:07:24 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:21:06 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,18 @@ static t_fmt		parse_flags(t_state *state, t_fmt fmt)
 
 static t_fmt		parse_minwidth(t_state *state, t_fmt fmt)
 {
-	while (*state->frmt >= '0' && *state->frmt <= '9')
+	if (*state->frmt == '*')
 	{
-		fmt.minwidth *= 10;
-		fmt.minwidth += (*state->frmt) - '0';
+		fmt.minwidth = va_arg(state->args, unsigned int);
 		state->frmt++;
 	}
+	else
+		while (*state->frmt >= '0' && *state->frmt <= '9')
+		{
+			fmt.minwidth *= 10;
+			fmt.minwidth += (*state->frmt) - '0';
+			state->frmt++;
+		}
 	return (fmt);
 }
 
@@ -49,19 +55,27 @@ static t_fmt		parse_precision(t_state *state, t_fmt fmt)
 	{
 		state->frmt++;
 		fmt.precised = 42;
-		if (*state->frmt == '-')
+		if (*state->frmt == '*')
 		{
-			fac = -1;
-			state->frmt++;
-			fmt.negprec = 42;
-		}
-		while (*state->frmt >= '0' && *state->frmt <= '9')
-		{
-			fmt.precision *= 10;
-			fmt.precision += (*state->frmt) - '0';
+			fmt.precision = va_arg(state->args, int);
 			state->frmt++;
 		}
-		fmt.precision *= fac;
+		else
+		{
+			if (*state->frmt == '-')
+			{
+				fac = -1;
+				state->frmt++;
+				fmt.negprec = 42;
+			}
+			while (*state->frmt >= '0' && *state->frmt <= '9')
+			{
+				fmt.precision *= 10;
+				fmt.precision += (*state->frmt) - '0';
+				state->frmt++;
+			}
+			fmt.precision *= fac;
+		}
 	}
 	return (fmt);
 }

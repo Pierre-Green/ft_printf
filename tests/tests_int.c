@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:17:42 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 12:13:51 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:22:35 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ void	test_fmt_int(void)
 	printf_assert("Int fmt 17:", "|%.-5d|", 42);
 	printf_assert("Int fmt 18:", "|%.5d|", 42);
 	printf_assert("Int fmt 19:", "|%0-15.-5d|", -561321);
+	printf_assert("Int fmt 20:", "|%*d|", 15, 4224516);
+	printf_assert("Int fmt 21:", "|%.*d|", 10, 4224516);
 }
