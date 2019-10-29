@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 18:34:02 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 11:25:55 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:12:28 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ t_fmt						value_ptr(t_state *state, t_fmt fmt)
 
 t_fmt						value_uint(t_state *state, t_fmt fmt)
 {
-	fmt.value.u = va_arg(state->args, unsigned long int);
+	fmt.value.u = va_arg(state->args, unsigned int);
 	return (fmt);
 }
