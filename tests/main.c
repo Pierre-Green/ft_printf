@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:05:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 14:53:26 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 14:55:07 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int argc, char **argv)
 	// test_fmt_str();
 	// test_fmt_ptr();
 	// test_fmt_int();
-	// test_fmt_hex();
+	test_fmt_hex();
 	// test_fmt_uint();
 	// test_fmt_poly();
 }

@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 12:30:05 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:07:48 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void						convert_hex(t_state *state, t_fmt fmt)
 		len = 0;
 	if (fmt.precision < 0)
 		fmt.minwidth = ABS(fmt.precision);
-	if (fmt.flags & FLAG_NEGATIV)
+	if (fmt.flags & FLAG_NEGATIV || (fmt.negprec && fmt.precision == 0))
 		convert_hex_negativ(state, fmt, len);
 	else if (fmt.flags & FLAG_ZEROPAD && !fmt.precised)
 		convert_hex_zeropad(state, fmt, len);

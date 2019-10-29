@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 12:57:53 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:06:57 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct				s_fmt
 	size_t					minwidth;
 	char					precised;
 	ssize_t					precision;
+	char					negprec;
 	union 					e_value
 	{
 		long int			i;

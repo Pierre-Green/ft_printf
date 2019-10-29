@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 12:49:02 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:07:24 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static t_fmt		parse_precision(t_state *state, t_fmt fmt)
 		{
 			fac = -1;
 			state->frmt++;
+			fmt.negprec = 42;
 		}
 		while (*state->frmt >= '0' && *state->frmt <= '9')
 		{
