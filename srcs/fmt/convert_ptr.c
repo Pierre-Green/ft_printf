@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:36:36 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:50:52 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:16:45 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void			convert_ptr_negativ(t_state *state, t_fmt fmt, size_t len,
 	minwidth = MAX(len, fmt.minwidth);
 	minlen = len - 2;
 	if (fmt.precision > 0)
-		minlen = MAX(fmt.precision, minlen);
+		minlen = MAX((size_t)fmt.precision, minlen);
 	state->count += write_ptr(state->buff, fmt.value.u, minlen, none);
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 }
@@ -58,7 +58,7 @@ static void			convert_ptr_default(t_state *state, t_fmt fmt, size_t len,
 	minwidth = MAX(len, fmt.minwidth);
 	state->count += buff_write_nchar(state->buff, minwidth - len, ' ');
 	state->count += write_ptr(state->buff, fmt.value.u,
-		MAX(len - 2, fmt.precision), none);
+		MAX(len - 2, (size_t)fmt.precision), none);
 }
 
 void				convert_ptr(t_state *state, t_fmt fmt)
@@ -73,7 +73,7 @@ void				convert_ptr(t_state *state, t_fmt fmt)
 	if (!fmt.value.u && fmt.precised && !fmt.precision)
 		none = true;
 	if (fmt.precision >= 0)
-		len = MAX(len, fmt.precision);
+		len = MAX(len, (size_t)fmt.precision);
 	if (fmt.precision < 0)
 		fmt.minwidth = ABS(fmt.precision);
 	if (fmt.flags & FLAG_NEGATIV || fmt.precision < 0)

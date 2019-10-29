@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:53:14 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:17:59 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void					convert_uint(t_state *state, t_fmt fmt)
 
 	len = ft_count_uint_base(value, 10);
 	if (fmt.precision >= 0)
-		len = MAX(len, fmt.precision);
+		len = MAX(len, (size_t)fmt.precision);
 	else if (fmt.precision < 0)
 		fmt.minwidth = ABS(fmt.precision);
 	if (value == 0 && fmt.precised && fmt.precision == 0)

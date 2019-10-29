@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 16:01:47 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:14:02 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_fmt		get_initial_fmt(void)
 {
-	return ((t_fmt){ 0, 0, 0, 0, 0, 0 });
+	return ((t_fmt){ 0, 0, 0, 0, 0, { 0 } });
 }
 
 static t_fmt		parse_flags(t_state *state, t_fmt fmt)

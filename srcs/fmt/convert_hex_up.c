@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:13:41 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:48:04 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:18:25 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void					convert_hex_up(t_state *state, t_fmt fmt)
 
 	len = ft_count_uint_base(fmt.value.u, 16);
 	if (fmt.precision >= 0)
-		len = MAX(len, fmt.precision);
+		len = MAX(len, (size_t)fmt.precision);
 	if (fmt.value.u == 0 && fmt.precised && !fmt.precision)
 		len = 0;
 	if (fmt.precision < 0)

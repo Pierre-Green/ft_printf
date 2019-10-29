@@ -6,13 +6,13 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:05:13 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:59:42 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:18:41 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-int		main(int argc, char **argv)
+int		main(void)
 {
 	test_static();
 	test_fmt_char();

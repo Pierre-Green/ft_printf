@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:06:38 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:52:11 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:15:25 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static size_t		fmt_strlen(char *str, t_fmt fmt)
 	else
 		while (*(str + i))
 			i++;
-	return ((fmt.precised ? MIN(i, fmt.precision) : i));
+	return ((fmt.precised ? MIN(i, (size_t)fmt.precision) : i));
 }
 
 static void			convert_str_negativ(t_state *state, t_fmt fmt, size_t len)

@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:49:29 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:17:35 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void			convert_int_negativ(t_state *state, t_fmt fmt, size_t len)
 		fmt.minwidth = 0;
 	minwidth = MAX(len, fmt.minwidth);
 	if (fmt.precision < 0)
-		minwidth = MAX(minwidth, fmt.precision * -1);
+		minwidth = MAX(minwidth, (size_t)(fmt.precision * -1));
 	state->count += write_int(value, state->buff, count, len)
 		+ buff_write_nchar(state->buff, minwidth - len, ' ');
 }
@@ -83,7 +83,7 @@ void				convert_int(t_state *state, t_fmt fmt)
 
 	len = ft_count_uint_base(ABS(fmt.value.i), 10);
 	if (fmt.precision >= 0)
-		len = MAX(len, fmt.precision);
+		len = MAX(len, (size_t)fmt.precision);
 	if (fmt.value.i == 0 && fmt.precised && fmt.precision == 0)
 		len = 0;
 	if (fmt.value.i < 0)
