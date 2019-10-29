@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/25 18:45:39 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 12:49:02 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,10 @@ void				fmt(t_state *state)
 	fmt = parse_flags(state, fmt);
 	fmt = parse_minwidth(state, fmt);
 	fmt = parse_precision(state, fmt);
-	if (*state->frmt == '%')
-		state->count += buff_write_uchar(state->buff, '%');
-	else
-	{
-		if (!(f_conv = g_conversions[(unsigned char)*state->frmt]))
-			return ;
-		if (!(f_valu = g_values[(unsigned char)*state->frmt]))
-			return ;
+	if (!(f_conv = g_conversions[(unsigned char)*state->frmt]))
+		return ;
+	if ((f_valu = g_values[(unsigned char)*state->frmt]))
 		fmt = f_valu(state, fmt);
-		f_conv(state, fmt);
-	}
+	f_conv(state, fmt);
 	state->frmt++;
 }

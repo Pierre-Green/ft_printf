@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:11 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/28 15:48:06 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 12:37:51 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void						convert_int(t_state *state, t_fmt fmt);
 void						convert_uint(t_state *state, t_fmt fmt);
 void						convert_hex(t_state *state, t_fmt fmt);
 void						convert_hex_up(t_state *state, t_fmt fmt);
+void						convert_percent(t_state *state, t_fmt fmt);
 t_fmt						value_int(t_state *state, t_fmt fmt);
 t_fmt						value_str(t_state *state, t_fmt fmt);
 t_fmt						value_ptr(t_state *state, t_fmt fmt);
@@ -70,6 +71,7 @@ static t_convert_func		g_conversions[1 << 7] = {
 	['u'] = convert_uint,
 	['x'] = convert_hex,
 	['X'] = convert_hex_up,
+	['%'] = convert_percent
 };
 static t_convert_valu		g_values[1 << 7] = {
 	['c'] = value_int,
