@@ -6,7 +6,7 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:54:03 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 15:37:51 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:55:20 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ static t_fmt		parse_minwidth(t_state *state, t_fmt fmt)
 
 static t_fmt		parse_precision(t_state *state, t_fmt fmt)
 {
-	int				fac;
-
-	fac = 1;
 	if (*state->frmt && *state->frmt == '.')
 	{
 		state->frmt++;
@@ -62,19 +59,15 @@ static t_fmt		parse_precision(t_state *state, t_fmt fmt)
 		}
 		else
 		{
-			if (*state->frmt == '-')
-			{
-				fac = -1;
-				state->frmt++;
+			if (*state->frmt == '-' && state->frmt++)
 				fmt.negprec = 42;
-			}
 			while (*state->frmt >= '0' && *state->frmt <= '9')
 			{
 				fmt.precision *= 10;
 				fmt.precision += (*state->frmt) - '0';
 				state->frmt++;
 			}
-			fmt.precision *= fac;
+			fmt.precision = (fmt.negprec ? fmt.precision * -1 : fmt.precision);
 		}
 	}
 	return (fmt);

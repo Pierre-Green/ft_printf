@@ -6,17 +6,18 @@
 /*   By: pguthaus <pguthaus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 20:10:43 by pguthaus          #+#    #+#             */
-/*   Updated: 2019/10/29 12:16:31 by pguthaus         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:49:29 by pguthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fmt.h"
 #include "buff.h"
 
-static size_t				write_int(int value, t_buff *buff, size_t len, size_t minwidth)
+static size_t		write_int(int value, t_buff *buff, size_t len,
+	size_t minwidth)
 {
-	unsigned int			u_value;
-	size_t					count;
+	unsigned int	u_value;
+	size_t			count;
 
 	count = 0;
 	u_value = (unsigned int)value;
@@ -34,11 +35,11 @@ static size_t				write_int(int value, t_buff *buff, size_t len, size_t minwidth)
 	return (count);
 }
 
-static void				convert_int_negativ(t_state *state, t_fmt fmt, size_t len)
+static void			convert_int_negativ(t_state *state, t_fmt fmt, size_t len)
 {
-	const int			value = fmt.value.i;
-	size_t				minwidth;
-	size_t				count;
+	const int		value = fmt.value.i;
+	size_t			minwidth;
+	size_t			count;
 
 	count = ft_count_uint_base((unsigned int)ABS(value), 10);
 	if (fmt.precision < 0)
@@ -50,22 +51,22 @@ static void				convert_int_negativ(t_state *state, t_fmt fmt, size_t len)
 		+ buff_write_nchar(state->buff, minwidth - len, ' ');
 }
 
-static void				convert_int_zeropad(t_state *state, t_fmt fmt)
+static void			convert_int_zeropad(t_state *state, t_fmt fmt)
 {
-	const int			value = fmt.value.i;
-	size_t				len;
-	size_t				minwidth;
+	const int		value = fmt.value.i;
+	size_t			len;
+	size_t			minwidth;
 
 	len = ft_count_uint_base((unsigned int)ABS(value), 10);
 	minwidth = MAX(len, fmt.minwidth);
 	state->count += write_int(value, state->buff, len, minwidth);
 }
 
-static void				convert_int_default(t_state *state, t_fmt fmt, size_t len)
+static void			convert_int_default(t_state *state, t_fmt fmt, size_t len)
 {
-	const int			value = fmt.value.i;
-	size_t				minwidth;
-	size_t				count;
+	const int		value = fmt.value.i;
+	size_t			minwidth;
+	size_t			count;
 
 	count = ft_count_uint_base((unsigned int)ABS(value), 10);
 	minwidth = MAX(len, fmt.minwidth);
@@ -76,9 +77,9 @@ static void				convert_int_default(t_state *state, t_fmt fmt, size_t len)
 			+ write_int(value, state->buff, count, len);
 }
 
-void						convert_int(t_state *state, t_fmt fmt)
+void				convert_int(t_state *state, t_fmt fmt)
 {
-	size_t					len;
+	size_t			len;
 
 	len = ft_count_uint_base(ABS(fmt.value.i), 10);
 	if (fmt.precision >= 0)
